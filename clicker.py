@@ -7,22 +7,25 @@ def randomColor():
 
 
 i = 0
+upClicked = False
 
 
 def up():
-    global i
+    global i, upClicked
     i += 1
 
     updateBg()
     amountStr.set(i)
+    upClicked = True
 
 
 def down():
-    global i
+    global i, upClicked
     i -= 1
 
     updateBg()
     amountStr.set(i)
+    upClicked = False
 
 
 def updateBg():
@@ -32,6 +35,17 @@ def updateBg():
         root.configure(bg='green')
     elif i < 0:
         root.configure(bg='red')
+
+
+def triple(e):
+    global i
+
+    if upClicked:
+        i *= 3
+    else:
+        i //= 3
+
+    amountStr.set(i)
 
 
 root = tk.Tk()
@@ -49,6 +63,7 @@ text.configure(textvariable=amountStr)
 
 text.bind('<Enter>', lambda e: root.configure(bg='yellow'))
 text.bind('<Leave>', lambda e: updateBg())
+text.bind('<Double-Button-1>', triple)
 
 text.pack()
 
