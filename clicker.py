@@ -52,6 +52,12 @@ root = tk.Tk()
 root.title('Clicker')
 root.configure(bg='gray')
 
+root.bind('+', lambda e: up())
+root.bind('-', lambda e: down())
+root.bind('<Up>', lambda e: up())
+root.bind('<Down>', lambda e: down())
+root.bind('<space>', triple)
+
 amountStr = tk.IntVar(value=0)
 
 button = tk.Button(text='Up', bg=randomColor(), fg=randomColor())
